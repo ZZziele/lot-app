@@ -30,7 +30,7 @@ public class Plane {
 
     int speedInKmPerHour;
 
-    Pictures pictures;
+
 
     @Enumerated(EnumType.STRING)
     EngineType engineType;
@@ -44,5 +44,5 @@ public class Plane {
 
     int rangeInKm;
 
-
+    Pictures pictures;
 }
