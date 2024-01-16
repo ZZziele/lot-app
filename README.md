@@ -47,3 +47,10 @@ Rezerwaca
 - lot   
 - klient
 - kalendarz
+
+MVC - Model View Controller
+
+View         | View
+Controller   | Controller
+Model        | Service 
+             | Repository
