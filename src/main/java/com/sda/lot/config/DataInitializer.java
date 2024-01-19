@@ -26,7 +26,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        log.info("test");
         Plane tupolew = Plane.builder()
                 .model("t-153")
                 .description("Tupolew is beautifull")
