@@ -18,12 +18,17 @@ public class PlaneService {
         this.planeRepository = planeRepository;
     }
 
-    public List<Plane> GetPlanes(){
+    public List<Plane> GetAllPlanes(){
         log.info("getting all planes");
         //List<Plane> planes = planeRepository.findAll();
         var planes = planeRepository.findAll();
         log.info("number of planes: [{}]" , planes.size());
         log.debug("all planes: {}",planes);
+        log.info("number of planes: [{}]" , planes.size());
+        log.info("number of planes: [{}]" , planes.size());
+        log.info("number of planes: [{}]" , planes.size());
+        log.info("number of planes: [{}]" , planes.size());
+
         return planes;
 
     }
