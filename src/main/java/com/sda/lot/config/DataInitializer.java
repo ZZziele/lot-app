@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-@Profile("develop")
+@Profile("default")
 
 public class DataInitializer implements CommandLineRunner {
     private final PlaneRepository planeRepository;

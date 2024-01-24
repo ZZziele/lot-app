@@ -24,10 +24,6 @@ public class PlaneService {
         var planes = planeRepository.findAll();
         log.info("number of planes: [{}]" , planes.size());
         log.debug("all planes: {}",planes);
-        log.info("number of planes: [{}]" , planes.size());
-        log.info("number of planes: [{}]" , planes.size());
-        log.info("number of planes: [{}]" , planes.size());
-        log.info("number of planes: [{}]" , planes.size());
 
         return planes;
 
