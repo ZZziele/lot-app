@@ -3,6 +3,9 @@ package com.sda.lot.dto;
 import com.sda.lot.domain.Pictures;
 import com.sda.lot.domain.enumeration.EngineType;
 import com.sda.lot.domain.enumeration.FuelType;
+import lombok.Builder;
+
+@Builder
 
 public record PlaneDto(
         Long id,
