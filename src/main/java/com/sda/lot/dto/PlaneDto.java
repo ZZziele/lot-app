@@ -20,7 +20,7 @@ public record PlaneDto(
         String combustionPer100Km,
         int rangeInKm,
 
-        Pictures pictures
+        PicturesDto pictures
 
 
 

@@ -4,7 +4,7 @@ import com.sda.lot.domain.Plane;
 import com.sda.lot.dto.PlaneDto;
 
 public interface Mapper<E,D> {
-    PlaneDto fromEntityToDto(E entity);
+    D fromEntityToDto(E entity);
 
-    Plane fromDtoToEntity(D dto);
+    E fromDtoToEntity(D dto);
 }
