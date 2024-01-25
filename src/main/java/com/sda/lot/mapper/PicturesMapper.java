@@ -2,6 +2,9 @@ package com.sda.lot.mapper;
 
 import com.sda.lot.domain.Pictures;
 import com.sda.lot.dto.PicturesDto;
+import org.springframework.stereotype.Component;
+
+@Component
 
 
 public class PicturesMapper implements Mapper<Pictures, PicturesDto>{
