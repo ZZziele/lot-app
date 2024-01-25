@@ -20,6 +20,6 @@ public class PicturesMapper implements Mapper<Pictures, PicturesDto>{
         return Pictures.builder()
                 .mainPictureUrl(dto.mainPictureUrl())
                 .picturesUrls(dto.picturesUrls())
-                .build(); 
+                .build();
     }
 }

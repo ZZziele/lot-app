@@ -2,12 +2,18 @@ package com.sda.lot.mapper;
 
 import com.sda.lot.domain.Pictures;
 import com.sda.lot.domain.Plane;
-import com.sda.lot.dto.PicturesDto;
 import com.sda.lot.dto.PlaneDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PlaneMapper implements Mapper<Plane, PlaneDto>{
+
+    private final PicturesMapper picturesMapper;
+
+    public PlaneMapper(PicturesMapper picturesMapper) {
+        this.picturesMapper = picturesMapper;
+    }
+
     @Override
     public PlaneDto fromEntityToDto(Plane entity) {
         return PlaneDto.builder()
@@ -22,7 +28,7 @@ public class PlaneMapper implements Mapper<Plane, PlaneDto>{
                 .fuelType(entity.getFuelType())
                 .combustionPer100Km(entity.getCombustionPer100Km())
                 .rangeInKm(entity.getRangeInKm())
-                .pictures(new PicturesDto(entity.getPictures().getMainPictureUrl(),entity.getPictures().getPicturesUrls()))
+                .pictures(picturesMapper.fromEntityToDto(entity.getPictures()))
                 .build();
     }
 
@@ -39,7 +45,7 @@ public class PlaneMapper implements Mapper<Plane, PlaneDto>{
                 .fuelType(dto.fuelType())
                 .combustionPer100Km(dto.combustionPer100Km())
                 .rangeInKm(dto.rangeInKm())
-                .pictures(new Pictures(dto.pictures().mainPictureUrl(),dto.pictures().picturesUrls()))
+                .pictures(picturesMapper.fromDtoToEntity(dto.pictures()))
                 .build();
     }
 }
