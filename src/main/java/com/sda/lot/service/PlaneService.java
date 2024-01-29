@@ -33,6 +33,10 @@ public class PlaneService {
 
     public Plane findCarById(long planeId){
         return planeRepository.findById(planeId)
+                .map(plane -> {
+                    log.info("found plane: [{}]",plane);
+                    return plane;
+                })
                 .orElseThrow(()->new WrongPlaneIdException("No plane with id: " +planeId));
 
 
