@@ -1,6 +1,7 @@
 package com.sda.lot.service;
 
 import com.sda.lot.domain.Plane;
+import com.sda.lot.excepiton.WrongPlaneIdException;
 import com.sda.lot.mapper.PlaneMapper;
 import com.sda.lot.repository.PlaneRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +31,10 @@ public class PlaneService {
 
     }
 
-    public Plane findCarById(long planeId) {
-        //todo
-        throw new RuntimeException("Not implemented");
+    public Plane findCarById(long planeId){
+        return planeRepository.findById(planeId)
+                .orElseThrow(()->new WrongPlaneIdException("No plane with id: " +planeId));
+
+
     }
 }
