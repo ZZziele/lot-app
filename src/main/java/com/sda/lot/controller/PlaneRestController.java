@@ -6,6 +6,7 @@ import com.sda.lot.mapper.PlaneMapper;
 import com.sda.lot.service.PlaneService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +34,11 @@ public class PlaneRestController {
                 .stream()
                 .map(plane -> planeMapper.fromEntityToDto(plane))
                 .toList();
+    }
+    @GetMapping("planes/{id}")
+    public PlaneDto getPlaneById(@PathVariable("id") long planeId){
+        log.info("Trying to find car with id: [{}]",planeId);
+
+    return planeMapper.fromEntityToDto(planeService.findCarById(planeId));
     }
 }

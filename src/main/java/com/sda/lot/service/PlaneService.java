@@ -1,6 +1,7 @@
 package com.sda.lot.service;
 
 import com.sda.lot.domain.Plane;
+import com.sda.lot.mapper.PlaneMapper;
 import com.sda.lot.repository.PlaneRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,10 @@ public class PlaneService {
 
         return planes;
 
+    }
+
+    public Plane findCarById(long planeId) {
+        //todo
+        throw new RuntimeException("Not implemented");
     }
 }
