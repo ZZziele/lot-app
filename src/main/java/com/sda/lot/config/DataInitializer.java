@@ -41,7 +41,25 @@ public class DataInitializer implements CommandLineRunner {
                 .pictures(new Pictures("https://media.istockphoto.com/id/155439315/pl/zdj%C4%99cie/pasa%C5%BCer-samolot-lataj%C4%85cy-na-zach%C3%B3d-s%C5%82o%C5%84ca-nad-chmury.jpg?s=612x612&w=0&k=20&c=MSIU3x1RmlpwbOY8JGOeCxBDbsD05F4LAbT6n0yefpY=",
                         List.of()))
                 .build();
+
+
+        Plane tupolew2 = Plane.builder()
+                .model("t-153")
+                .description("Tupolew is beautifull")
+                .bodySerialNumber("1234")
+                .numberOfSeats(100)
+                .speedInKmPerHour(300)
+                .engineType(EngineType.V8)
+                .trunkCapacityInLitres(300)
+                .fuelType(FuelType.OIL)
+                .combustionPer100Km("52 liters")
+                .rangeInKm(500)
+                .pictures(new Pictures("https://media.istockphoto.com/id/155439315/pl/zdj%C4%99cie/pasa%C5%BCer-samolot-lataj%C4%85cy-na-zach%C3%B3d-s%C5%82o%C5%84ca-nad-chmury.jpg?s=612x612&w=0&k=20&c=MSIU3x1RmlpwbOY8JGOeCxBDbsD05F4LAbT6n0yefpY=",
+                        List.of()))
+                .build();
         log.info("after build");
         planeRepository.save(tupolew);
+        planeRepository.save(tupolew2);
+        log.info("after save");
     }
 }
