@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -47,8 +48,10 @@ public class PlaneRestController {
     }
 
     @PostMapping("/planes")
-    public void addPlane(@RequestBody @Valid PlaneDto toSave){
+    public ResponseEntity<Void> addPlane(@RequestBody @Valid PlaneDto toSave){
         log.info("adding new Plane: [{}]",toSave);
        var result = planeService.addPlane(planeMapper.fromDtoToEntity(toSave));
+        URI uri = URI.create("/api/cars/" + result.getId());
+       return ResponseEntity.created(uri).build();
     }
 }
