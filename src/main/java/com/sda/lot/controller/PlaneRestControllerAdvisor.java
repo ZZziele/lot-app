@@ -4,6 +4,7 @@ import com.sda.lot.dto.ResponseDto;
 import com.sda.lot.excepiton.WrongPlaneIdException;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,9 +39,10 @@ public class PlaneRestControllerAdvisor {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseDto handleBadRequest(MethodArgumentNotValidException exc){
-        
+    @ExceptionHandler({MethodArgumentNotValidException.class, DataIntegrityViolationException.class})
+    public ResponseDto handleBadRequest(Exception exc ){
+        log.warn("exc: ",exc);
+
     return ResponseDto.builder()
             .timestamp(LocalDateTime.now())
             .status(HttpStatus.BAD_REQUEST.value())

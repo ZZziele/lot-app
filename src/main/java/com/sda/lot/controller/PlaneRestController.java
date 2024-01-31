@@ -6,6 +6,7 @@ import com.sda.lot.mapper.PlaneMapper;
 import com.sda.lot.service.PlaneService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,6 @@ public class PlaneRestController {
     @PostMapping("/planes")
     public void addPlane(@RequestBody @Valid PlaneDto toSave){
         log.info("adding new Plane: [{}]",toSave);
-
+       var result = planeService.addPlane(planeMapper.fromDtoToEntity(toSave));
     }
 }

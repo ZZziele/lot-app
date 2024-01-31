@@ -41,4 +41,12 @@ public class PlaneService {
 
 
     }
+
+    public Plane addPlane(Plane plane) {
+        Plane saved = planeRepository.save(plane);
+        log.info("saved plane: [{]}",saved);
+        return saved;
+    }
+
+
 }
