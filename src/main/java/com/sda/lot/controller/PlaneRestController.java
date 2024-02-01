@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,4 +75,10 @@ public class PlaneRestController {
                 .build();
     }
 
+    @PutMapping("/planes/{id}")
+    public PlaneDto replacePlane(@RequestBody @Valid PlaneDto toReplace, @PathVariable("id") Long planeId){
+        log.info("trying to replace plane by id: [{}]  with content [{}] ",planeId,toReplace);
+        var entityToReplace = planeMapper.fromDtoToEntity(toReplace);
+                return planeMapper.fromEntityToDto(planeService.replacePlane(planeId,entityToReplace));
+    }
 }

@@ -62,4 +62,18 @@ public class PlaneService {
 
 
     }
+    @Transactional
+    public Plane replacePlane(Long planeId, Plane entityToReplace) {
+        log.info("repacing plane with id [{}] with content [{}] ",planeId ,entityToReplace);
+        boolean exist = planeRepository.existsById(planeId);
+        if(!exist){
+            throw new WrongPlaneIdException("Wrong plane id: " + planeId);
+        }
+
+        if(!planeId.equals(entityToReplace.getId())){
+            throw new WrongPlaneIdException("Ids missmatch: [%d]  vs [%d]".formatted(planeId,entityToReplace.getId()));
+        }
+            return planeRepository.save(entityToReplace);
+
+    }
 }
