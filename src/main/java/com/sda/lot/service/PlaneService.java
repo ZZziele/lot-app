@@ -4,6 +4,7 @@ import com.sda.lot.domain.Plane;
 import com.sda.lot.excepiton.WrongPlaneIdException;
 import com.sda.lot.mapper.PlaneMapper;
 import com.sda.lot.repository.PlaneRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,17 @@ public class PlaneService {
         return saved;
     }
 
+    @Transactional
+    public void deletePlaneById(long planeId) {
+        log.info("delete plane by id: [{}]",planeId);
 
+        boolean exist = planeRepository.existsById(planeId);
+                if(exist) {
+                    planeRepository.deleteById(planeId);
+                }else {
+                    throw new WrongPlaneIdException("Wrong id: " + planeId);
+                }
+
+
+    }
 }

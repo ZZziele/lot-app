@@ -7,6 +7,7 @@ import com.sda.lot.service.PlaneService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,4 +65,13 @@ public class PlaneRestController {
 
        return ResponseEntity.created(pathOnlyUri).build();
     }
+
+    @DeleteMapping("/planes/{id}")
+    public ResponseEntity<Void> deletePlane(@PathVariable("id") long planeId){
+        log.info("trying to delete plane with Id: [{}]",planeId);
+        planeService.deletePlaneById(planeId);
+        return ResponseEntity.noContent()
+                .build();
+    }
+
 }
