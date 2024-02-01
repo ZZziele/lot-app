@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -48,10 +50,18 @@ public class PlaneRestController {
     }
 
     @PostMapping("/planes")
-    public ResponseEntity<Void> addPlane(@RequestBody @Valid PlaneDto toSave){
+    public ResponseEntity<Void> addPlane(@RequestBody @Valid PlaneDto toSave,
+                                         UriComponentsBuilder ucb){
         log.info("adding new Plane: [{}]",toSave);
-       var result = planeService.addPlane(planeMapper.fromDtoToEntity(toSave));
-        URI uri = URI.create("/api/cars/" + result.getId());
-       return ResponseEntity.created(uri).build();
+        var result = planeService.addPlane(planeMapper.fromDtoToEntity(toSave));
+          URI locationUri = ucb.path("/planes/{id}")
+              //  .buildAndExpand(result.getId()))
+                .buildAndExpand(Map.of("id",result.getId()))
+                .toUri();
+
+        String pathWithoutServer = locationUri.getPath();
+        URI pathOnlyUri = URI.create(pathWithoutServer);
+
+       return ResponseEntity.created(pathOnlyUri).build();
     }
 }
