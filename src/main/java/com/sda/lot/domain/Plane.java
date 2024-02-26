@@ -30,6 +30,7 @@ public class Plane {
     String description;
     @NotNull
     @Size(min = 2)
+
     @Column(unique = true)
     String bodySerialNumber;
 
