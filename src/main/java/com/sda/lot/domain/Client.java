@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,10 @@ import java.time.LocalDateTime;
         Address address;
 
         LocalDateTime accountCreated;
+          @PrePersist
 
+        void setAccountCreated(){
+            accountCreated = LocalDateTime.now();
+        }
 
     }
