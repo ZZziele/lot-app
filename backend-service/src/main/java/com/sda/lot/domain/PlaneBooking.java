@@ -31,7 +31,9 @@ public class PlaneBooking {
     @ManyToOne
     Client client;
 
+    LocalDate startDate;
 
+    LocalDate endDate;
 
     int totalPriceInPolishGrosz;
 
