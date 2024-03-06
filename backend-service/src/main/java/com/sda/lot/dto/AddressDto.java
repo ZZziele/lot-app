@@ -1,4 +1,7 @@
 package com.sda.lot.dto;
 //TODO
-public record ClientDto() {
+public record AddressDto(
+
+
+) {
 }
